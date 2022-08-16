@@ -4,7 +4,6 @@ app = Flask(__name__)
 
 @app.route('https://risc-v.herokuapp.com/', methods = ['GET'])
 def index():
-
     return render_template('index.html')
 
 @app.route('/add', methods = ['GET'])
