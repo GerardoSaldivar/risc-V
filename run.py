@@ -285,8 +285,6 @@ def sh():
     numconv = convertirBinarios(numero)
     num5 = numconv[0:5]
     num7 = numconv[5:12]
-    num5 = numero[0:5]
-    num7 = numero[5:12]
     return jsonify({ "sh":{
         "inmediato5": num5,
         "inmediato7": num7,
