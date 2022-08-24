@@ -6,6 +6,14 @@ $(document).ready(function(){
     }else{
         console.log("no vacio")
     }
+
+    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
+		localStorage.setItem('activeTab', $(e.target).attr('href'));
+	});
+	var activeTab = localStorage.getItem('activeTab');
+	if(activeTab){
+		$('#Tab a[href="' + activeTab + '"]').tab('show');
+	}
 });
 
 function separar(arreglo){
@@ -272,34 +280,34 @@ function traducir(){
             let errores = document.getElementById('LabelError').innerHTML
                     
             if(InstruccionesTipoR.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2])
-                val3 = validarPuntero(lineaL[3])
-                val4 = validarPuntero(lineaL[4])
+                val2 = validarPuntero(lineaL[2],'rd')
+                val3 = validarPuntero(lineaL[3],'rs1')
+                val4 = validarPuntero(lineaL[4],'rs2')
                 resp = traducirTipoR(lineaL)
             }else if(InstruccionesTipoI.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2])
-                val3 = validarPuntero(lineaL[3])
+                val2 = validarPuntero(lineaL[2],'rd')
+                val3 = validarPuntero(lineaL[3],'rs1')
                 val4 = validarConstante(lineaL[4])
                 resp = traducirTipoI(lineaL)
             }else if(InstruccionesTipoLoadI.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2])
+                val2 = validarPuntero(lineaL[2],'rd')
                 val3 = validarConstante(lineaL[3])
-                val4 = validarPuntero(lineaL[4])
+                val4 = validarPuntero(lineaL[4],'rs1')
                 resp = traducirTipoLoadI(lineaL)
             }else if(InstruccionesTipoStorageS.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2])
+                val2 = validarPuntero(lineaL[2],'rs1')
                 val3 = validarConstante(lineaL[3])
-                val4 = validarPuntero(lineaL[4])
+                val4 = validarPuntero(lineaL[4],'rs2')
                 resp = traducirTipoStoreS(lineaL)
             }else if(InstruccionesTipoHexadecimales.includes(lineaL[1])){
                 resp = traducirTiposHexadecimales(lineaL)
             }else if(InstruccionTipoPTO.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2])
+                val2 = validarPuntero(lineaL[2],'rs1')
+                val3 = validarHexadecimal(lineaL[3])
                 resp = traducirTipoPTO(lineaL)
             }else{
                 valIns = validarInstruccion(lineaL)
             }
-            
             $("#textOut").val(strr+'\n'+resp.trim())
 
             if(val2.length > 0 || val3.length > 0 || val4.length > 0 || valIns.length > 0){
