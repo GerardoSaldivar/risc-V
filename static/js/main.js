@@ -232,9 +232,9 @@ function traducirTipoPTO(str){
             let = hexa = data[''+tipo+'']['hexa']
             let = rs1 = data[''+tipo+'']['rs1']
             let = ceros10 = data[''+tipo+'']['ceros10']
-            let = ceros12 = data[''+tipo+'']['ceros12']
+            let = ceros11 = data[''+tipo+'']['ceros11']
             
-            traduccion = ceros12+rs1+ceros10+hexa
+            traduccion = ceros11+rs1+ceros10+hexa
         },
         error: function(error){
             console.log('error: '+error)

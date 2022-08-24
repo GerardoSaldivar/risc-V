@@ -6,6 +6,10 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
+@app.route('/instrucciones', methods = ['GET'])
+def instrucciones():
+    return render_template('instrucciones.html')
+
 @app.route('/add', methods = ['GET'])
 def add():
     return jsonify({ "add":{
@@ -256,8 +260,10 @@ def lbu():
 
 @app.route('/lhu', methods = ['GET'])
 def lhu():
+    numero = request.args.get('inm')
+    numconv = convertirBinarios(numero)
     return jsonify({ "lhu":{
-        "inmediato": convertirBinarios[request.args.get('inm')],
+        "inmediato": numconv,
         "func3": "101",
         "opcode": "0000011",
         "rs1": punteros[request.args.get('rs1')],
@@ -314,7 +320,7 @@ def reti():
     num = request.args.get('numhexa')
     numConv = HexadecimalBinario(num)
     return jsonify({ "reti":{
-        "ceros": "000000000000000000000000000",
+        "ceros": "00000000000000000000000000",#26
         "hexa": numConv
     }})
 
@@ -323,7 +329,7 @@ def shot():
     num = request.args.get('numhexa')
     numConv = HexadecimalBinario(num)
     return jsonify({ "shot":{
-        "ceros": "000000000000000000000000000",
+        "ceros": "00000000000000000000000000",#26
         "hexa": numConv
     }})
 
@@ -332,7 +338,7 @@ def pto():
     num = request.args.get('numhexa')
     numConv = HexadecimalBinario(num)
     return jsonify({ "pto":{
-        "ceros12": "000000000000",
+        "ceros11": "00000000000",
         "rs1": punteros[request.args.get('rs1')],
         "ceros10": "0000000000",
         "hexa": numConv
