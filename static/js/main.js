@@ -7,13 +7,16 @@ $(document).ready(function(){
         console.log("no vacio")
     }
 
-    $('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
-		localStorage.setItem('activeTab', $(e.target).attr('href'));
-	});
-	var activeTab = localStorage.getItem('activeTab');
-	if(activeTab){
-		$('#Tab a[href="' + activeTab + '"]').tab('show');
-	}
+
+    let field = document.getElementById("textIn");
+    if (sessionStorage.getItem("autosave")) {
+        field.value = sessionStorage.getItem("autosave");
+    }
+
+    field.addEventListener("change", () => {
+        sessionStorage.setItem("autosave", field.value);
+    });
+
 });
 
 function separar(arreglo){
