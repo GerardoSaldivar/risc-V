@@ -17,7 +17,7 @@ function validarPuntero(arrP,tipo){
     }else if(arrP === undefined){
         respuesta = '<br>- No se encontro el puntero '+tipo+' '
     }else{
-        respuesta = '<br>- Tipo de puntero '+arrP+' no v&aacute;lida'
+        respuesta = '<br>- El valor del puntero '+tipo+' '+arrP+' no es v&aacute;lido'
     }
     return respuesta
 }
