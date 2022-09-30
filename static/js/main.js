@@ -195,6 +195,7 @@ function traducir(){
                 }else if(InstruccionesTipoB.includes(lineaL[1])){
                     val2 = validarPuntero(lineaL[2],'rs1')
                     val3 = validarPuntero(lineaL[3],'rs2')
+                    val4 = validarEtiqueta(lineaL[4])
                     resp = traducirTipoB(lineaL)
                 }else if(InstruccionesTipoHexadecimales.includes(lineaL[1])){
                     resp = traducirTiposHexadecimales(lineaL)

@@ -358,14 +358,6 @@ function traducirTipoB(str){
     let distancia = ''
 
     distancia = num1 - num2
-    console.log('1: '+num1)
-    console.log('2: '+num2)
-    console.log('hexa: '+distancia)
-  /*  if(num1>num2){
-       distancia =  num1 - num2
-    }else{
-        distancia = num2 - num1
-    }*/ 
 
     let traduccion = ''
     $.ajax({

@@ -11,7 +11,7 @@ function validarPuntero(arrP,tipo){
     return respuesta
 }
 
-function  validarConstante(arrC){
+function validarConstante(arrC){
     let respuesta = ''
     if (arrC <= 2047 && arrC >= -2048){
         respuesta = ''
@@ -23,7 +23,7 @@ function  validarConstante(arrC){
     return respuesta
 }
 
-function  validarHexadecimal(arrH){
+function validarHexadecimal(arrH){
     console.log('tipo: '+typeof(arrH))
     let respuesta = ''
     if (arrH > 0){
@@ -32,6 +32,16 @@ function  validarHexadecimal(arrH){
         respuesta = '<br>- No se encontro el hexadecimal'
     }else{
         respuesta = '<br>- No se encontro el hexadecimal'
+    }
+    return respuesta
+}
+
+function validarEtiqueta(arrEt){
+    let respuesta = ''
+    if(etiquetas.has(arrEt)){
+        respuesta = ''
+    }else{
+        respuesta = '<br>- No se encontro la etiqueta: '+arrEt
     }
     return respuesta
 }
