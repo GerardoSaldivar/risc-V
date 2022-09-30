@@ -344,6 +344,96 @@ def pto():
         "hexa": numConv
     }})
 
+@app.route('/beq', methods = ['GET'])
+def beq():
+    numero = request.args.get('inm')
+    numconv = convertirBinarios(numero)
+    num5 = numconv[0:5]
+    num7 = numconv[5:12]
+    return jsonify({ "beq":{
+        "opcode": "1100011",
+        "func3": "000",
+        "inmediato5": num5,
+        "inmediato7": num7,
+        "rs1": punteros[request.args.get('rs1')],
+        "rs2": punteros[request.args.get('rs2')],
+    }})
+
+@app.route('/bne', methods = ['GET'])
+def bne():
+    numero = request.args.get('inm')
+    numconv = convertirBinarios(numero)
+    num5 = numconv[0:5]
+    num7 = numconv[5:12]
+    return jsonify({ "bne":{
+        "opcode": "1100011",
+        "func3": "001",
+        "inmediato5": num5,
+        "inmediato7": num7,
+        "rs1": punteros[request.args.get('rs1')],
+        "rs2": punteros[request.args.get('rs2')],
+    }})
+
+@app.route('/blt', methods = ['GET'])
+def blt():
+    numero = request.args.get('inm')
+    numconv = convertirBinarios(numero)
+    num5 = numconv[0:5]
+    num7 = numconv[5:12]
+    return jsonify({ "blt":{
+        "opcode": "1100011",
+        "func3": "100",
+        "inmediato5": num5,
+        "inmediato7": num7,
+        "rs1": punteros[request.args.get('rs1')],
+        "rs2": punteros[request.args.get('rs2')],
+    }})
+
+@app.route('/bge', methods = ['GET'])
+def bge():
+    numero = request.args.get('inm')
+    numconv = convertirBinarios(numero)
+    num5 = numconv[0:5]
+    num7 = numconv[5:12]
+    return jsonify({ "bge":{
+        "opcode": "1100011",
+        "func3": "101",
+        "inmediato5": num5,
+        "inmediato7": num7,
+        "rs1": punteros[request.args.get('rs1')],
+        "rs2": punteros[request.args.get('rs2')],
+    }})
+
+@app.route('/bltu', methods = ['GET'])
+def bltu():
+    numero = request.args.get('inm')
+    numconv = convertirBinarios(numero)
+    num5 = numconv[0:5]
+    num7 = numconv[5:12]
+    return jsonify({ "bltu":{
+        "opcode": "1100011",
+        "func3": "110",
+        "inmediato5": num5,
+        "inmediato7": num7,
+        "rs1": punteros[request.args.get('rs1')],
+        "rs2": punteros[request.args.get('rs2')],
+    }})
+
+@app.route('/bgeu', methods = ['GET'])
+def bgeu():
+    numero = request.args.get('inm')
+    numconv = convertirBinarios(numero)
+    num5 = numconv[0:5]
+    num7 = numconv[5:12]
+    return jsonify({ "bgeu":{
+        "opcode": "1100011",
+        "func3": "111",
+        "inmediato5": num5,
+        "inmediato7": num7,
+        "rs1": punteros[request.args.get('rs1')],
+        "rs2": punteros[request.args.get('rs2')],
+    }})
+
 punteros = {
     'x0':'00000','X0':'00000',
     'x1':'00001','X1':'00001',

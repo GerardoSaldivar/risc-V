@@ -1,4 +1,14 @@
 let num = 0;
+const etiquetas = new Map()
+
+const InstruccionesTipoR = ['add','sub','sll','slt','sltu','xor','srl','sra','or','and']
+const InstruccionesTipoI = ['addi','andi','ori','xori','slti','sltiu','slli','srli','srai']
+const InstruccionesTipoLoadI = ['lb','lh','lw','lbu','lhu']
+const InstruccionesTipoStorageS = ['sb','sh','sw']
+const InstruccionesTipoB = ['beq','bne','blt','bge','bltu','bgeu']
+const InstruccionesTipoHexadecimales = ['shot','reti']
+const InstruccionTipoPTO = ['pto']
+
 $(document).ready(function(){
     let str = document.getElementById("textIn").value.trim()
     if(str === ""){
@@ -7,7 +17,7 @@ $(document).ready(function(){
         console.log("no vacio")
     }
 
-
+    //sesion del textarea del lenguaje ensamblador
     let field = document.getElementById("textIn");
     if (sessionStorage.getItem("autosave")) {
         field.value = sessionStorage.getItem("autosave");
@@ -16,7 +26,6 @@ $(document).ready(function(){
     field.addEventListener("change", () => {
         sessionStorage.setItem("autosave", field.value);
     });
-
 });
 
 function separar(arreglo){
@@ -48,6 +57,29 @@ function separar(arreglo){
     return separacion
 }
 
+function buscarEtiquetas(){
+    
+    let lin = document.getElementById("textIn").value
+    let linea = lin.split("\n")
+
+    for (let i=0; i < linea.length; i++){
+        etiqueta = separar(linea[i])
+
+        if(esEtiqueta(etiqueta)){
+            etiquetas.set(etiqueta[1],etiqueta[0])
+        }
+    }
+}
+
+function esEtiqueta(etiqueta){
+    const total = InstruccionesTipoR.concat(InstruccionesTipoI.concat(InstruccionesTipoLoadI.concat(InstruccionesTipoStorageS.concat(InstruccionesTipoB.concat(InstruccionesTipoHexadecimales.concat(InstruccionTipoPTO))))))
+    if(total.includes(etiqueta[2])){
+        return true
+    }else if(total.includes(etiqueta[1])){
+        return false
+    }
+}
+
 function memoria(event) {
     var codigo = event.which || event.keyCode;
     if(codigo === 13){
@@ -59,7 +91,6 @@ function memoria(event) {
     }     
 }
 
-
 function descargar() {
     var textInput = document.getElementById("textIn").value;
     var filename = "riscV.txt";
@@ -69,7 +100,6 @@ function descargar() {
     document.body.appendChild(element);
     element.click();
 }
-
 
 function decimalAHexa(d) { 
     var hex = d.toString(16);
@@ -85,176 +115,13 @@ function decimalAHexa(d) {
     return hex; 
 }
 
-function traducirTipoR(str){
-    let p0 = str[0]
-    let tipo = str[1]// instruccion
-    let rd = str[2]// rd
-    let rs1 = str[3]// rs1
-    let rs2 = str[4]// rs2
-    let traduccion = ''
-    $.ajax({
-        async: false,
-        url: '/'+tipo+'',
-        type: 'GET',
-        data: {'rs2':rs2,'rs1':rs1,"rd":rd},
-        success: function(data){
-            
-            let = func3 = data[''+tipo+'']['func3']
-            let = func7 = data[''+tipo+'']['func7']
-            let = opcode = data[''+tipo+'']['opcode']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = rs2 = data[''+tipo+'']['rs2']
-            let = rd = data[''+tipo+'']['rd']
-            
-            traduccion = func7+rs2+rs1+func3+rd+opcode         
-        },
-        error: function(error){
-            console.log('error: '+error)
-        }
-    })
-    return traduccion
-}
-function traducirTipoI(str){
-    let p0 = str[0]
-    let tipo = str[1]// instruccion
-    let rd = str[2]// rd
-    let rs1 = str[3]// rs1
-    let inm = str[4]// inm
-    let traduccion = ''
-    $.ajax({
-        async: false,
-        url: '/'+tipo+'',
-        type: 'GET',
-        data:  {'inm':inm,'rs1':rs1,"rd":rd},
-        success: function(data){
-            
-            let = func3 = data[''+tipo+'']['func3']
-            let = opcode = data[''+tipo+'']['opcode']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = inm = data[''+tipo+'']['inmediato']
-            let = rd = data[''+tipo+'']['rd']
-            
-            traduccion = inm+rs1+func3+rd+opcode          
-        },
-        error: function(error){
-            console.log('error: '+error)
-        }
-    })
-    return traduccion
-}
-
-function traducirTipoLoadI(str){
-    let p0 = str[0]
-    let tipo = str[1]// instruccion
-    let rs1 = str[2]// rs1
-    let inm = str[3]// inm
-    let rd = str[4]// rd
-    let traduccion = ''
-    $.ajax({
-        async: false,
-        url: '/'+tipo+'',
-        type: 'GET',
-        data:  {'inm':inm,'rs1':rs1,"rd":rd},
-        success: function(data){
-            
-            let = func3 = data[''+tipo+'']['func3']
-            let = opcode = data[''+tipo+'']['opcode']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = inm = data[''+tipo+'']['inmediato']
-            let = rd = data[''+tipo+'']['rd']
-            
-            traduccion = inm+rs1+func3+rd+opcode         
-        },
-        error: function(error){
-            console.log('error: '+error)
-        }
-    })
-    return traduccion
-}
-
-function traducirTipoStoreS(str){
-    let p0 = str[0]
-    let tipo = str[1]// instruccion
-    let rs1 = str[2]// rs1
-    let inm = str[3]// inm
-    let rs2 = str[4]// rs2
-    let traduccion = ''
-    $.ajax({
-        async: false,
-        url: '/'+tipo+'',
-        type: 'GET',
-        data:  {'inm':inm,'rs1':rs1,"rs2":rs2},
-        success: function(data){
-            
-            let = func3 = data[''+tipo+'']['func3']
-            let = opcode = data[''+tipo+'']['opcode']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = inm5 = data[''+tipo+'']['inmediato5']
-            let = inm7 = data[''+tipo+'']['inmediato7']
-            let = rs2 = data[''+tipo+'']['rs2']
-            
-            traduccion = inm7+rs2+rs1+func3+inm5+opcode         
-        },
-        error: function(error){
-            console.log('error: '+error)
-        }
-    })
-    return traduccion
-}
-
-function traducirTiposHexadecimales(str){
-    let p0 = str[0]
-    let tipo = str[1]// instruccion
-    let numhexa = str[2]// hexa
-    let traduccion = ''
-    $.ajax({
-        async: false,
-        url: '/'+tipo+'',
-        type: 'GET',
-        data:  {'numhexa':numhexa},
-        success: function(data){
-            
-            let = hexa = data[''+tipo+'']['hexa']
-            let = ceros = data[''+tipo+'']['ceros']
-            
-            traduccion = ceros+hexa
-        },
-        error: function(error){
-            console.log('error: '+error)
-        }
-    })
-    return traduccion
-}
-
-function traducirTipoPTO(str){
-    let p0 = str[0]
-    let tipo = str[1]// instruccion
-    let rs1 = str[2]// sr1
-    let numhexa = str[3]// hexa
-
-    let traduccion = ''
-    $.ajax({
-        async: false,
-        url: '/'+tipo+'',
-        type: 'GET',
-        data:  {'numhexa':numhexa, 'rs1':rs1},
-        success: function(data){
-            
-            let = hexa = data[''+tipo+'']['hexa']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = ceros10 = data[''+tipo+'']['ceros10']
-            let = ceros11 = data[''+tipo+'']['ceros11']
-            
-            traduccion = ceros11+rs1+ceros10+hexa
-        },
-        error: function(error){
-            console.log('error: '+error)
-        }
-    })
-    return traduccion
+function HexadecimalADecimal(h){
+    let number = parseInt(h, 16);
+    return number;
 }
 
 function traducir(){
+    buscarEtiquetas()
     let lin = document.getElementById("textIn").value
     let linea = lin.split("\n")
     let resp = ''
@@ -272,50 +139,84 @@ function traducir(){
         val4 = ''
         valIns = ''
         if(lineaL.length > 1){
-            const InstruccionesTipoR = ['add','sub','sll','slt','sltu','xor','srl','sra','or','and']
-            const InstruccionesTipoI = ['addi','andi','ori','xori','slti','sltiu','slli','srli','srai']
-            const InstruccionesTipoLoadI = ['lb','lh','lw','lbu','lhu']
-            const InstruccionesTipoStorageS = ['sb','sh','sw']
-            const InstruccionesTipoHexadecimales = ['shot','reti']
-            const InstruccionTipoPTO = ['pto']
 
             let strr = document.getElementById("textOut").value.trim()
             let errores = document.getElementById('LabelError').innerHTML
-                    
-            if(InstruccionesTipoR.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2],'rd')
-                val3 = validarPuntero(lineaL[3],'rs1')
-                val4 = validarPuntero(lineaL[4],'rs2')
-                resp = traducirTipoR(lineaL)
-            }else if(InstruccionesTipoI.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2],'rd')
-                val3 = validarPuntero(lineaL[3],'rs1')
-                val4 = validarConstante(lineaL[4])
-                resp = traducirTipoI(lineaL)
-            }else if(InstruccionesTipoLoadI.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2],'rd')
-                val3 = validarConstante(lineaL[3])
-                val4 = validarPuntero(lineaL[4],'rs1')
-                resp = traducirTipoLoadI(lineaL)
-            }else if(InstruccionesTipoStorageS.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2],'rs1')
-                val3 = validarConstante(lineaL[3])
-                val4 = validarPuntero(lineaL[4],'rs2')
-                resp = traducirTipoStoreS(lineaL)
-            }else if(InstruccionesTipoHexadecimales.includes(lineaL[1])){
-                resp = traducirTiposHexadecimales(lineaL)
-            }else if(InstruccionTipoPTO.includes(lineaL[1])){
-                val2 = validarPuntero(lineaL[2],'rs1')
-                val3 = validarHexadecimal(lineaL[3])
-                resp = traducirTipoPTO(lineaL)
-            }else{
-                valIns = validarInstruccion(lineaL)
-            }
-            $("#textOut").val(strr+'\n'+resp.trim())
 
+            if(esEtiqueta(lineaL)){//si contiene una etiqueta
+                if(InstruccionesTipoR.includes(lineaL[2])){
+                    val2 = validarPuntero(lineaL[3],'rd')
+                    val3 = validarPuntero(lineaL[4],'rs1')
+                    val4 = validarPuntero(lineaL[5],'rs2')
+                    resp = traducirTipoRE(lineaL)
+                }else if(InstruccionesTipoI.includes(lineaL[2])){
+                    val2 = validarPuntero(lineaL[3],'rd')
+                    val3 = validarPuntero(lineaL[4],'rs1')
+                    val4 = validarConstante(lineaL[5])
+                    resp = traducirTipoIE(lineaL)
+                }else if(InstruccionesTipoLoadI.includes(lineaL[2])){
+                    val2 = validarPuntero(lineaL[3],'rd')
+                    val3 = validarConstante(lineaL[4])
+                    val4 = validarPuntero(lineaL[5],'rs1')
+                    resp = traducirTipoLoadIE(lineaL)
+                }else if(InstruccionesTipoStorageS.includes(lineaL[2])){
+                    val2 = validarPuntero(lineaL[3],'rs1')
+                    val3 = validarConstante(lineaL[4])
+                    val4 = validarPuntero(lineaL[5],'rs2')
+                    resp = traducirTipoStoreSE(lineaL)
+                }else if(InstruccionesTipoHexadecimales.includes(lineaL[2])){
+                    resp = traducirTiposHexadecimales(lineaL)
+                }else if(InstruccionTipoPTO.includes(lineaL[2])){
+                    val2 = validarPuntero(lineaL[3],'rs1')
+                    val3 = validarHexadecimal(lineaL[4])
+                    resp = traducirTipoPTOE(lineaL)
+                }
+            }else if(esEtiqueta(lineaL)===false){// no contiene una etiqueta
+                if(InstruccionesTipoR.includes(lineaL[1])){
+                    val2 = validarPuntero(lineaL[2],'rd')
+                    val3 = validarPuntero(lineaL[3],'rs1')
+                    val4 = validarPuntero(lineaL[4],'rs2')
+                    resp = traducirTipoR(lineaL)
+                }else if(InstruccionesTipoI.includes(lineaL[1])){
+                    val2 = validarPuntero(lineaL[2],'rd')
+                    val3 = validarPuntero(lineaL[3],'rs1')
+                    val4 = validarConstante(lineaL[4])
+                    resp = traducirTipoI(lineaL)
+                }else if(InstruccionesTipoLoadI.includes(lineaL[1])){
+                    val2 = validarPuntero(lineaL[2],'rd')
+                    val3 = validarConstante(lineaL[3])
+                    val4 = validarPuntero(lineaL[4],'rs1')
+                    resp = traducirTipoLoadI(lineaL)
+                }else if(InstruccionesTipoStorageS.includes(lineaL[1])){
+                    val2 = validarPuntero(lineaL[2],'rs1')
+                    val3 = validarConstante(lineaL[3])
+                    val4 = validarPuntero(lineaL[4],'rs2')
+                    resp = traducirTipoStoreS(lineaL)
+                }else if(InstruccionesTipoB.includes(lineaL[1])){
+                    val2 = validarPuntero(lineaL[2],'rs1')
+                    val3 = validarPuntero(lineaL[3],'rs2')
+                    resp = traducirTipoB(lineaL)
+                }else if(InstruccionesTipoHexadecimales.includes(lineaL[1])){
+                    resp = traducirTiposHexadecimales(lineaL)
+                }else if(InstruccionTipoPTO.includes(lineaL[1])){
+                    val2 = validarPuntero(lineaL[2],'rs1')
+                    val3 = validarHexadecimal(lineaL[3])
+                    resp = traducirTipoPTO(lineaL)
+                }
+            }else{
+                valIns = '<br> - Tipo de instrucci&oacute;n no v&aacute;lida'
+            }
+            let salida = strr+'\n'+resp
+            $("#textOut").val(salida.trim())
+                
             if(val2.length > 0 || val3.length > 0 || val4.length > 0 || valIns.length > 0){
                 document.getElementById('LabelError').innerHTML=errores+'<br>Errores en la posici&oacute;n de memoria: '+lineaL[0]+''+valIns+''+val2+''+val3+''+val4;
             }
         }   
     }
 }
+
+
+/*else if(val2.length == 0 && val3.length == 0 && val4.length == 0 && valIns.length == 0){
+    document.getElementById('LabelError').innerHTML='<br> ¡ Traduccion completa !'
+}*/
