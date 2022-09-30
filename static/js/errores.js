@@ -38,7 +38,9 @@ function validarHexadecimal(arrH){
 
 function validarEtiqueta(arrEt){
     let respuesta = ''
-    if(etiquetas.has(arrEt)){
+    if(arrEt === undefined){
+        respuesta = '<br>- No a escrito la etiqueta'
+    }else if(etiquetas.has(arrEt)){
         respuesta = ''
     }else{
         respuesta = '<br>- No se encontro la etiqueta: '+arrEt
