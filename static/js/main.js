@@ -58,7 +58,7 @@ function separar(arreglo){
 }
 
 function buscarEtiquetas(){
-    
+    etiquetas.clear()
     let lin = document.getElementById("textIn").value
     let linea = lin.split("\n")
 
