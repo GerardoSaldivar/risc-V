@@ -12,12 +12,12 @@ function traducirTipoR(str){
         data: {'rs2':rs2,'rs1':rs1,"rd":rd},
         success: function(data){
             
-            let = func7 = data[''+tipo+'']['func7']
-            let = rs2 = data[''+tipo+'']['rs2']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rd = data[''+tipo+'']['rd']
-            let = opcode = data[''+tipo+'']['opcode']
+            let func7 = data[''+tipo+'']['func7']
+            let rs2 = data[''+tipo+'']['rs2']
+            let rs1 = data[''+tipo+'']['rs1']
+            let func3 = data[''+tipo+'']['func3']
+            let rd = data[''+tipo+'']['rd']
+            let opcode = data[''+tipo+'']['opcode']
             
             traduccion = func7+rs2+rs1+func3+rd+opcode         
         },
@@ -42,12 +42,12 @@ function traducirTipoRE(str){
         data: {'rs2':rs2,'rs1':rs1,"rd":rd},
         success: function(data){
             
-            let = func7 = data[''+tipo+'']['func7']
-            let = rs2 = data[''+tipo+'']['rs2']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rd = data[''+tipo+'']['rd']
-            let = opcode = data[''+tipo+'']['opcode']
+            let func7 = data[''+tipo+'']['func7']
+            let rs2 = data[''+tipo+'']['rs2']
+            let rs1 = data[''+tipo+'']['rs1']
+            let func3 = data[''+tipo+'']['func3']
+            let rd = data[''+tipo+'']['rd']
+            let opcode = data[''+tipo+'']['opcode']
             
             traduccion = func7+rs2+rs1+func3+rd+opcode         
         },
@@ -71,11 +71,11 @@ function traducirTipoI(str){
         data:  {'inm':inm,'rs1':rs1,"rd":rd},
         success: function(data){
             
-            let = inm = data[''+tipo+'']['inmediato']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rd = data[''+tipo+'']['rd']
-            let = opcode = data[''+tipo+'']['opcode']
+            let inm = data[''+tipo+'']['inmediato']
+            let rs1 = data[''+tipo+'']['rs1']
+            let func3 = data[''+tipo+'']['func3']
+            let rd = data[''+tipo+'']['rd']
+            let opcode = data[''+tipo+'']['opcode']
             
             traduccion = inm+rs1+func3+rd+opcode          
         },
@@ -100,11 +100,11 @@ function traducirTipoIE(str){
         data:  {'inm':inm,'rs1':rs1,"rd":rd},
         success: function(data){
             
-            let = inm = data[''+tipo+'']['inmediato']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rd = data[''+tipo+'']['rd']
-            let = opcode = data[''+tipo+'']['opcode']
+            let inm = data[''+tipo+'']['inmediato']
+            let rs1 = data[''+tipo+'']['rs1']
+            let func3 = data[''+tipo+'']['func3']
+            let rd = data[''+tipo+'']['rd']
+            let opcode = data[''+tipo+'']['opcode']
             
             traduccion = inm+rs1+func3+rd+opcode          
         },
@@ -129,11 +129,11 @@ function traducirTipoLoadI(str){
         data:  {'inm':inm,'rs1':rs1,"rd":rd},
         success: function(data){
             
-            let = opcode = data[''+tipo+'']['opcode']
-            let = rd = data[''+tipo+'']['rd']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = inm = data[''+tipo+'']['inmediato']
+            let opcode = data[''+tipo+'']['opcode']
+            let rd = data[''+tipo+'']['rd']
+            let func3 = data[''+tipo+'']['func3']
+            let rs1 = data[''+tipo+'']['rs1']
+            let inm = data[''+tipo+'']['inmediato']
             
             traduccion = inm+rs1+func3+rd+opcode         
         },
@@ -158,11 +158,11 @@ function traducirTipoLoadIE(str){
         data:  {'inm':inm,'rs1':rs1,"rd":rd},
         success: function(data){
             
-            let = opcode = data[''+tipo+'']['opcode']
-            let = rd = data[''+tipo+'']['rd']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = inm = data[''+tipo+'']['inmediato']
+            let opcode = data[''+tipo+'']['opcode']
+            let rd = data[''+tipo+'']['rd']
+            let func3 = data[''+tipo+'']['func3']
+            let rs1 = data[''+tipo+'']['rs1']
+            let inm = data[''+tipo+'']['inmediato']
             
             traduccion = inm+rs1+func3+rd+opcode         
         },
@@ -187,12 +187,12 @@ function traducirTipoStoreS(str){
         data:  {'inm':inm,'rs1':rs1,"rs2":rs2},
         success: function(data){
             
-            let = opcode = data[''+tipo+'']['opcode']
-            let = inm5 = data[''+tipo+'']['inmediato5']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = rs2 = data[''+tipo+'']['rs2']
-            let = inm7 = data[''+tipo+'']['inmediato7']
+            let opcode = data[''+tipo+'']['opcode']
+            let inm5 = data[''+tipo+'']['inmediato5']
+            let func3 = data[''+tipo+'']['func3']
+            let rs1 = data[''+tipo+'']['rs1']
+            let rs2 = data[''+tipo+'']['rs2']
+            let inm7 = data[''+tipo+'']['inmediato7']
             
             traduccion = inm7+rs2+rs1+func3+inm5+opcode         
         },
@@ -218,12 +218,12 @@ function traducirTipoStoreSE(str){
         data:  {'inm':inm,'rs1':rs1,"rs2":rs2},
         success: function(data){
 
-            let = opcode = data[''+tipo+'']['opcode']
-            let = inm5 = data[''+tipo+'']['inmediato5']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = rs2 = data[''+tipo+'']['rs2']
-            let = inm7 = data[''+tipo+'']['inmediato7']
+            let opcode = data[''+tipo+'']['opcode']
+            let inm5 = data[''+tipo+'']['inmediato5']
+            let func3 = data[''+tipo+'']['func3']
+            let rs1 = data[''+tipo+'']['rs1']
+            let rs2 = data[''+tipo+'']['rs2']
+            let inm7 = data[''+tipo+'']['inmediato7']
             
             traduccion = inm7+rs2+rs1+func3+inm5+opcode         
         },
@@ -246,8 +246,8 @@ function traducirTiposHexadecimales(str){
         data:  {'numhexa':numhexa},
         success: function(data){
             
-            let = hexa = data[''+tipo+'']['hexa']
-            let = ceros = data[''+tipo+'']['ceros']
+            let hexa = data[''+tipo+'']['hexa']
+            let ceros = data[''+tipo+'']['ceros']
             
             traduccion = ceros+hexa
         },
@@ -270,8 +270,8 @@ function traducirTiposHexadecimalesE(str){
         data:  {'numhexa':numhexa},
         success: function(data){
             
-            let = hexa = data[''+tipo+'']['hexa']
-            let = ceros = data[''+tipo+'']['ceros']
+            let hexa = data[''+tipo+'']['hexa']
+            let ceros = data[''+tipo+'']['ceros']
             
             traduccion = ceros+hexa
         },
@@ -296,10 +296,10 @@ function traducirTipoPTO(str){
         data:  {'numhexa':numhexa, 'rs1':rs1},
         success: function(data){
             
-            let = ceros11 = data[''+tipo+'']['ceros11']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = ceros10 = data[''+tipo+'']['ceros10']
-            let = hexa = data[''+tipo+'']['hexa']
+            let ceros11 = data[''+tipo+'']['ceros11']
+            let rs1 = data[''+tipo+'']['rs1']
+            let ceros10 = data[''+tipo+'']['ceros10']
+            let hexa = data[''+tipo+'']['hexa']
             
             traduccion = ceros11+rs1+ceros10+hexa
         },
@@ -325,10 +325,10 @@ function traducirTipoPTOE(str){
         data:  {'numhexa':numhexa, 'rs1':rs1},
         success: function(data){
             
-            let = ceros11 = data[''+tipo+'']['ceros11']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = ceros10 = data[''+tipo+'']['ceros10']
-            let = hexa = data[''+tipo+'']['hexa']
+            let ceros11 = data[''+tipo+'']['ceros11']
+            let rs1 = data[''+tipo+'']['rs1']
+            let ceros10 = data[''+tipo+'']['ceros10']
+            let hexa = data[''+tipo+'']['hexa']
             
             traduccion = ceros11+rs1+ceros10+hexa
         },
@@ -363,12 +363,12 @@ function traducirTipoB(str){
         data:  {'inm':distancia, 'rs1':rs1, 'rs2':rs2},
         success: function(data){
             
-            let = opcode = data[''+tipo+'']['opcode']
-            let = inm5 = data[''+tipo+'']['inmediato5']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = rs2 = data[''+tipo+'']['rs2']
-            let = inm7 = data[''+tipo+'']['inmediato7']
+            let opcode = data[''+tipo+'']['opcode']
+            let inm5 = data[''+tipo+'']['inmediato5']
+            let func3 = data[''+tipo+'']['func3']
+            let rs1 = data[''+tipo+'']['rs1']
+            let rs2 = data[''+tipo+'']['rs2']
+            let inm7 = data[''+tipo+'']['inmediato7']
             
             traduccion = inm7+rs2+rs1+func3+inm5+opcode
         },

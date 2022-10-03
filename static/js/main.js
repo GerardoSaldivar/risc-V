@@ -160,9 +160,9 @@ function traducir(){
                     val4 = validarPuntero(lineaL[5],'rs1')
                     resp = traducirTipoLoadIE(lineaL)
                 }else if(InstruccionesTipoStorageS.includes(lineaL[2])){
-                    val2 = validarPuntero(lineaL[3],'rs1')
+                    val2 = validarPuntero(lineaL[3],'rs2')
                     val3 = validarConstante(lineaL[4])
-                    val4 = validarPuntero(lineaL[5],'rs2')
+                    val4 = validarPuntero(lineaL[5],'rs1')
                     resp = traducirTipoStoreSE(lineaL)
                 }else if(InstruccionesTipoHexadecimales.includes(lineaL[2])){
                     resp = traducirTiposHexadecimales(lineaL)
@@ -188,9 +188,9 @@ function traducir(){
                     val4 = validarPuntero(lineaL[4],'rs1')
                     resp = traducirTipoLoadI(lineaL)
                 }else if(InstruccionesTipoStorageS.includes(lineaL[1])){
-                    val2 = validarPuntero(lineaL[2],'rs1')
+                    val2 = validarPuntero(lineaL[2],'rs2')
                     val3 = validarConstante(lineaL[3])
-                    val4 = validarPuntero(lineaL[4],'rs2')
+                    val4 = validarPuntero(lineaL[4],'rs1')
                     resp = traducirTipoStoreS(lineaL)
                 }else if(InstruccionesTipoB.includes(lineaL[1])){
                     val2 = validarPuntero(lineaL[2],'rs1')
