@@ -176,9 +176,9 @@ function traducirTipoLoadIE(str){
 function traducirTipoStoreS(str){
     let p0 = str[0]
     let tipo = str[1]// instruccion
-    let rs1 = str[2]// rs1
+    let rs2 = str[2]// rs2
     let inm = str[3]// inm
-    let rs2 = str[4]// rs2
+    let rs1 = str[4]// rs1
     let traduccion = ''
     $.ajax({
         async: false,
@@ -207,9 +207,9 @@ function traducirTipoStoreSE(str){
     let p0 = str[0]
     let etiqueta = str[1]
     let tipo = str[2]// instruccion
-    let rs1 = str[3]// rs1
+    let rs2 = str[3]// rs2
     let inm = str[4]// inm
-    let rs2 = str[5]// rs2
+    let rs1 = str[5]// rs1
     let traduccion = ''
     $.ajax({
         async: false,
