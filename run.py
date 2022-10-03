@@ -8,6 +8,7 @@ def index():
 
 @app.route('/instrucciones', methods = ['GET'])
 def instrucciones():
+    #imprimirBinarios()
     return render_template('instrucciones.html')
 
 @app.route('/add', methods = ['GET'])
@@ -274,8 +275,8 @@ def lhu():
 def sb():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num5 = numconv[7:12]
+    num7 = numconv[0:7]
     return jsonify({ "sb":{
         "inmediato5": num5,
         "inmediato7": num7,
@@ -289,8 +290,8 @@ def sb():
 def sh():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num5 = numconv[7:12]
+    num7 = numconv[0:7]
     return jsonify({ "sh":{
         "inmediato5": num5,
         "inmediato7": num7,
@@ -304,8 +305,8 @@ def sh():
 def sw():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num5 = numconv[7:12]
+    num7 = numconv[0:7]
     return jsonify({ "sw":{
         "inmediato5": num5,
         "inmediato7": num7,
@@ -348,13 +349,15 @@ def pto():
 def beq():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num4 = numconv[8:12]
+    num6 = numconv[2:8]
+    num11 = numconv[1]
+    num12 = numconv[0]
     return jsonify({ "beq":{
         "opcode": "1100011",
         "func3": "000",
-        "inmediato5": num5,
-        "inmediato7": num7,
+        "inmediato5": num4+num11,
+        "inmediato7": num12+num6,
         "rs1": punteros[request.args.get('rs1')],
         "rs2": punteros[request.args.get('rs2')],
     }})
@@ -363,13 +366,15 @@ def beq():
 def bne():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num4 = numconv[8:12]
+    num6 = numconv[2:8]
+    num11 = numconv[1]
+    num12 = numconv[0]
     return jsonify({ "bne":{
         "opcode": "1100011",
         "func3": "001",
-        "inmediato5": num5,
-        "inmediato7": num7,
+        "inmediato5": num4+num11,
+        "inmediato7": num12+num6,
         "rs1": punteros[request.args.get('rs1')],
         "rs2": punteros[request.args.get('rs2')],
     }})
@@ -378,13 +383,15 @@ def bne():
 def blt():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num4 = numconv[8:12]
+    num6 = numconv[2:8]
+    num11 = numconv[1]
+    num12 = numconv[0]
     return jsonify({ "blt":{
         "opcode": "1100011",
         "func3": "100",
-        "inmediato5": num5,
-        "inmediato7": num7,
+        "inmediato5": num4+num11,
+        "inmediato7": num12+num6,
         "rs1": punteros[request.args.get('rs1')],
         "rs2": punteros[request.args.get('rs2')],
     }})
@@ -393,13 +400,15 @@ def blt():
 def bge():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num4 = numconv[8:12]
+    num6 = numconv[2:8]
+    num11 = numconv[1]
+    num12 = numconv[0]
     return jsonify({ "bge":{
         "opcode": "1100011",
         "func3": "101",
-        "inmediato5": num5,
-        "inmediato7": num7,
+        "inmediato5": num4+num11,
+        "inmediato7": num12+num6,
         "rs1": punteros[request.args.get('rs1')],
         "rs2": punteros[request.args.get('rs2')],
     }})
@@ -408,13 +417,15 @@ def bge():
 def bltu():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num4 = numconv[8:12]
+    num6 = numconv[2:8]
+    num11 = numconv[1]
+    num12 = numconv[0]
     return jsonify({ "bltu":{
         "opcode": "1100011",
         "func3": "110",
-        "inmediato5": num5,
-        "inmediato7": num7,
+        "inmediato5": num4+num11,
+        "inmediato7": num12+num6,
         "rs1": punteros[request.args.get('rs1')],
         "rs2": punteros[request.args.get('rs2')],
     }})
@@ -423,13 +434,15 @@ def bltu():
 def bgeu():
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    num5 = numconv[0:5]
-    num7 = numconv[5:12]
+    num4 = numconv[8:12]
+    num6 = numconv[2:8]
+    num11 = numconv[1]
+    num12 = numconv[0]
     return jsonify({ "bgeu":{
         "opcode": "1100011",
         "func3": "111",
-        "inmediato5": num5,
-        "inmediato7": num7,
+        "inmediato5": num4+num11,
+        "inmediato7": num12+num6,
         "rs1": punteros[request.args.get('rs1')],
         "rs2": punteros[request.args.get('rs2')],
     }})
@@ -499,3 +512,10 @@ def HexadecimalBinario(numHex):
     while len(numBinStr) < 5:
         numBinStr = '0'+numBinStr
     return numBinStr
+
+#def imprimirBinarios():
+#    num = -2048
+#    while ( num <= 2047 ):
+#        numbinario = convertirBinarios(num)
+#        print(num,numbinario)
+#        num = num + 1

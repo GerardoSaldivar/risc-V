@@ -346,11 +346,7 @@ function traducirTipoB(str){
     let rs2 = str[3]// sr2
     let inm = str[4]// etiqueta
 
-    if(etiquetas.has(inm)){
-
-    }else{
-
-    }
+    //if(etiquetas.has(inm)){}else{}
 
     let valorHexa = etiquetas.get(inm)
     let num1 = HexadecimalADecimal(valorHexa)
@@ -365,38 +361,6 @@ function traducirTipoB(str){
         url: '/'+tipo+'',
         type: 'GET',
         data:  {'inm':distancia, 'rs1':rs1, 'rs2':rs2},
-        success: function(data){
-            
-            let = opcode = data[''+tipo+'']['opcode']
-            let = inm5 = data[''+tipo+'']['inmediato5']
-            let = func3 = data[''+tipo+'']['func3']
-            let = rs1 = data[''+tipo+'']['rs1']
-            let = rs2 = data[''+tipo+'']['rs2']
-            let = inm7 = data[''+tipo+'']['inmediato7']
-            
-            traduccion = inm7+rs2+rs1+func3+inm5+opcode
-        },
-        error: function(error){
-            console.log('error: '+error)
-        }
-    })
-    return traduccion
-}
-
-function traducirTipoBE(str){
-    let p0 = str[0]
-    let etiqueta = str[1]// etiqueta
-    let tipo = str[2]// instruccion
-    let rs1 = str[3]// sr1
-    let rs2 = str[4]// sr2
-    let inm = str[5]// inm
-
-    let traduccion = ''
-    $.ajax({
-        async: false,
-        url: '/'+tipo+'',
-        type: 'GET',
-        data:  {'inm':inm, 'rs1':rs1, 'rs2':rs2},
         success: function(data){
             
             let = opcode = data[''+tipo+'']['opcode']
