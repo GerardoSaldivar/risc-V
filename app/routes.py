@@ -2,17 +2,18 @@ from flask import render_template, request, jsonify
 from app import app
 from .OperacionesBinarias import punteros, convertirBinarios, HexadecimalBinario
 
-@app.route('/instrucciones', methods = ['GET'])
-def instrucciones():
-    return render_template('instrucciones.html')
-
-@app.route('/traductor', methods = ['GET'])
-def traductor():
-    return render_template('traductor.html')
-
-@app.route('/instrucciones2', methods = ['GET'])
-def instrucciones2():
-    return render_template('instrucciones2.html')
+@app.route('/', methods = ['GET'])
+def inicio():
+    return jsonify({ "inicio":{
+        "app": "API",
+        "procesador": "Risc - V",
+        "tipo R": "add, sub, sll, slt, sltu, xor, srl, sra, or, and",
+        "tipo I": "addi, andi, ori, xori, slti, sltiu, slli, srli, srai",
+        "tipo load (i)": "lb, lh, lw, lbu, lhu",
+        "tipo store (s)": "sb, sh, sw",
+        "tipo B": "beq, bne, blt, bge, bltu, bgeu",
+        "anexadas":"pto, reti, shot"
+    }})
 
 @app.route('/add', methods = ['GET'])
 def add():
