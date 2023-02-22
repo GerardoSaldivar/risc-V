@@ -28,7 +28,7 @@ def add():
         "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
         "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
         "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200,200
+    }}),200
 
 @app.route('/sub', methods = ['GET'])
 def sub():
