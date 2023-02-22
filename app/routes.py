@@ -148,7 +148,7 @@ def orr():
         "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
         "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
         "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200,200
+    }}),200
 
 @app.route('/and', methods = ['GET'])
 def andd():
@@ -163,7 +163,7 @@ def andd():
         "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
         "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
         "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200,200
+    }}),200
 
 @app.route('/addi', methods = ['GET'])
 def addi():
@@ -191,7 +191,7 @@ def andi():
         "opcode": "0010011",
         "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
         "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200,200
+    }}),200
 
 @app.route('/ori', methods = ['GET'])
 def ori():
