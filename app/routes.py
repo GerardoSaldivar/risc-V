@@ -1,6 +1,6 @@
 from flask import request, jsonify
 from app import app
-from .OperacionesBinarias import punteros, convertirBinarios, HexadecimalBinario
+from .OperacionesBinarias import convertirBinarios, HexadecimalBinario, convertirPunteros
 
 @app.route('/', methods = ['GET'])
 def inicio():
@@ -25,9 +25,9 @@ def add():
         "func7": "0000000",
         "func3": "000",
         "opcode": "0110011",
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200,200
 
 @app.route('/sub', methods = ['GET'])
@@ -40,9 +40,9 @@ def sub():
         "func7": "0100000",
         "func3": "000",
         "opcode": "0110011",
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/sll', methods = ['GET'])
@@ -55,9 +55,9 @@ def sll():
         "func7": "0000000",
         "func3": "001",
         "opcode": "0110011",
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/slt', methods = ['GET'])
@@ -70,9 +70,9 @@ def slt():
         "func7": "0000000",
         "func3": "010",
         "opcode": "0110011",
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/sltu', methods = ['GET'])
@@ -85,9 +85,9 @@ def sltu():
         "func7": "0000000",
         "func3": "011",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/xor', methods = ['GET'])
@@ -100,9 +100,9 @@ def xor():
         "func7": "0000000",
         "func3": "100",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/srl', methods = ['GET'])
@@ -115,9 +115,9 @@ def srl():
         "func7": "0000000",
         "func3": "101",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/sra', methods = ['GET'])
@@ -130,9 +130,9 @@ def sra():
         "func7": "0100000",
         "func3": "101",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/or', methods = ['GET'])
@@ -145,9 +145,9 @@ def orr():
         "func7": "0000000",
         "func3": "110",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200,200
 
 @app.route('/and', methods = ['GET'])
@@ -160,9 +160,9 @@ def andd():
         "func7": "0000000",
         "func3": "111",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else punteros[rs2],
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200,200
 
 @app.route('/addi', methods = ['GET'])
@@ -175,8 +175,8 @@ def addi():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "000",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/andi', methods = ['GET'])
@@ -189,8 +189,8 @@ def andi():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "111",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200,200
 
 @app.route('/ori', methods = ['GET'])
@@ -203,8 +203,8 @@ def ori():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "110",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/xori', methods = ['GET'])
@@ -217,8 +217,8 @@ def xori():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "100",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/slti', methods = ['GET'])
@@ -231,8 +231,8 @@ def slti():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "010",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/sltiu', methods = ['GET'])
@@ -245,8 +245,8 @@ def sltui():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "011",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/slli', methods = ['GET'])
@@ -259,8 +259,8 @@ def slli():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "001",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/srli', methods = ['GET'])
@@ -273,8 +273,8 @@ def srli():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "101",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/srai', methods = ['GET'])
@@ -287,8 +287,8 @@ def srai():
         "inmediato": "-----" if inm == None else convertirBinarios(inm),
         "func3": "100",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/lb', methods = ['GET'])
@@ -302,8 +302,8 @@ def lb():
         "inmediato": numconv,
         "func3": "000",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/lh', methods = ['GET'])
@@ -317,8 +317,8 @@ def lh():
         "inmediato": numconv,
         "func3": "001",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/lw', methods = ['GET'])
@@ -332,8 +332,8 @@ def lw():
         "inmediato": numconv,
         "func3": "010",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/lbu', methods = ['GET'])
@@ -347,8 +347,8 @@ def lbu():
         "inmediato": numconv,
         "func3": "100",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/lhu', methods = ['GET'])
@@ -362,8 +362,8 @@ def lhu():
         "inmediato": numconv,
         "func3": "101",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/sb', methods = ['GET'])
@@ -379,8 +379,8 @@ def sb():
         "inmediato7": num7,
         "func3": "000",
         "opcode": "0100011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/sh', methods = ['GET'])
@@ -396,8 +396,8 @@ def sh():
         "inmediato7": num7,
         "func3": "001",
         "opcode": "0100011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd],
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd),
     }}),200
 
 @app.route('/sw', methods = ['GET'])
@@ -413,8 +413,8 @@ def sw():
         "inmediato7": num7,
         "func3": "010",
         "opcode": "0100011",
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd]
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd)
     }}),200
 
 @app.route('/reti', methods = ['GET'])
@@ -437,11 +437,12 @@ def shot():
 
 @app.route('/pto', methods = ['GET'])
 def pto():
+    rs1 = request.args.get('rs1')
     num = request.args.get('numhexa')
     numConv = HexadecimalBinario(num)
     return jsonify({ "pto":{
         "ceros11": "00000000000",
-        "rs1": punteros[request.args.get('rs1')],
+        "rs1": convertirPunteros(rs1),
         "ceros10": "0000000000",
         "hexa": numConv
     }}),200
@@ -464,8 +465,8 @@ def beq():
         "func3": "000",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd],
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd),
     }}),200
 
 @app.route('/bne', methods = ['GET'])
@@ -486,8 +487,8 @@ def bne():
         "func3": "001",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd],
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd),
     }}),200
 
 @app.route('/blt', methods = ['GET'])
@@ -508,8 +509,8 @@ def blt():
         "func3": "100",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd],
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd),
     }}),200
 
 @app.route('/bge', methods = ['GET'])
@@ -530,8 +531,8 @@ def bge():
         "func3": "101",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd],
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd),
     }}),200
 
 @app.route('/bltu', methods = ['GET'])
@@ -552,8 +553,8 @@ def bltu():
         "func3": "110",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd],
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd),
     }}),200
 
 @app.route('/bgeu', methods = ['GET'])
@@ -574,6 +575,6 @@ def bgeu():
         "func3": "111",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else punteros[rs1],
-        "rd": "-----" if rd == None else punteros[rd],
+        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
+        "rd": "-----" if rd == None else convertirPunteros(rd),
     }}),200
