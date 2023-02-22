@@ -34,20 +34,32 @@ punteros = {
 }
 
 def convertirBinarios(num2):
-    num = int(num2)
-    if(num >= 0):
-        temp = format(num, "b")
-        salida = formato12(temp)
-    if(num <= -1):
-        temp = num * -1
-        temp2 = format(temp, "b")
-        formato = formato12(temp2)
-        temp3 = formato.replace('1','2')
-        temp4 = temp3.replace('0','1')
-        temp5 = temp4.replace('2','0')
-        temp6 = int(temp5,2)
-        temp7 = temp6 + 1
-        salida = format(temp7, 'b')
+    num, salida = "",""
+
+    try:
+        num = int(num2)
+    except:
+        salida = "------------"
+
+    if (isinstance(num, int)):
+        num = int(num2)
+        if(num >= 0 and num <= 2047):
+            temp = format(num, "b")
+            salida = formato12(temp)
+        if(num >= -2048 and num <= -1):
+            temp = num * -1
+            temp2 = format(temp, "b")
+            formato = formato12(temp2)
+            temp3 = formato.replace('1','2')
+            temp4 = temp3.replace('0','1')
+            temp5 = temp4.replace('2','0')
+            temp6 = int(temp5,2)
+            temp7 = temp6 + 1
+            salida = format(temp7, 'b')
+        if(num <= -2049 or num >= 2048 ):
+            salida = "------------"
+    else:
+        salida = "------------"
     return str(salida)
 
 def formato12(num):
