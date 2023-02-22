@@ -3,20 +3,25 @@ import re
 def convertirPunteros(p):
     salida = ""
     numbers = re.findall('\d', p)
-    if len(numbers) == 1:
-        i = int(numbers[0])
-        temp = format(i, "b")
-        num = int(temp)
-        f = formato5(num)
-        salida = f
-    if len(numbers) > 1:
-        j = ",".join(numbers)
-        r = j.replace(",","")
-        i = int(r)
-        temp = format(i, "b")
-        salida = "-----" if i > 31 else formato5(temp)
 
-    return salida
+    try:
+        t = int(p)
+        salida = ""
+    except:
+        if len(numbers) == 1:
+            i = int(numbers[0])
+            b = format(i, "b")
+            num = int(b)
+            f = formato5(num)
+            salida = f
+        if len(numbers) > 1:
+            j = ",".join(numbers)
+            r = j.replace(",","")
+            i = int(r)
+            b = format(i, "b")
+            salida = "-----" if i > 31 else formato5(b)
+
+    return "-----" if len(salida) == 0 else salida
 
 
 def convertirBinarios(num2):
