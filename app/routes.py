@@ -1,10 +1,10 @@
 from flask import request, jsonify
 from app import app
-from .OperacionesBinarias import convertirBinarios, HexadecimalBinario, convertirPunteros
+from .OperacionesBinarias import convertirRegistro, HexadecimalBinario, convertirBinarios
 
 @app.route('/', methods = ['GET'])
 def inicio():
-    return jsonify({ "inicio":{
+    return jsonify({
         "app": "API",
         "procesador": "Risc - V",
         "tipo R": "add, sub, sll, slt, sltu, xor, srl, sra, or, and",
@@ -13,22 +13,23 @@ def inicio():
         "tipo store (s)": "sb, sh, sw",
         "tipo B": "beq, bne, blt, bge, bltu, bgeu",
         "tipo anexadas":"pto, reti, shot"
-    }}),200
+    }),200
 
 @app.route('/add', methods = ['GET'])
 def add():
     rs2 = request.args.get('rs2')
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
-
-    return jsonify({ "add":{
+    
+    print('registro: ',convertirRegistro(rs2))
+    return jsonify({
         "func7": "0000000",
         "func3": "000",
         "opcode": "0110011",
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/sub', methods = ['GET'])
 def sub():
@@ -36,14 +37,14 @@ def sub():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
     
-    return jsonify({ "sub":{
+    return jsonify({
         "func7": "0100000",
         "func3": "000",
         "opcode": "0110011",
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/sll', methods = ['GET'])
 def sll():
@@ -51,14 +52,14 @@ def sll():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
 
-    return jsonify({ "sll":{
+    return jsonify({
         "func7": "0000000",
         "func3": "001",
         "opcode": "0110011",
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/slt', methods = ['GET'])
 def slt():
@@ -66,14 +67,14 @@ def slt():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
 
-    return jsonify({ "slt":{
+    return jsonify({
         "func7": "0000000",
         "func3": "010",
         "opcode": "0110011",
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/sltu', methods = ['GET'])
 def sltu():
@@ -81,14 +82,14 @@ def sltu():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
 
-    return jsonify({ "sltu":{
+    return jsonify({
         "func7": "0000000",
         "func3": "011",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/xor', methods = ['GET'])
 def xor():
@@ -96,14 +97,14 @@ def xor():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
 
-    return jsonify({ "xor":{
+    return jsonify({
         "func7": "0000000",
         "func3": "100",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/srl', methods = ['GET'])
 def srl():
@@ -111,14 +112,14 @@ def srl():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
 
-    return jsonify({ "srl":{
+    return jsonify({
         "func7": "0000000",
         "func3": "101",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/sra', methods = ['GET'])
 def sra():
@@ -126,14 +127,14 @@ def sra():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
 
-    return jsonify({ "sra":{
+    return jsonify({
         "func7": "0100000",
         "func3": "101",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/or', methods = ['GET'])
 def orr():
@@ -141,14 +142,14 @@ def orr():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
 
-    return jsonify({ "or":{
+    return jsonify({
         "func7": "0000000",
         "func3": "110",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/and', methods = ['GET'])
 def andd():
@@ -156,14 +157,14 @@ def andd():
     rs1 = request.args.get('rs1')
     rd = request.args.get('rd')
 
-    return jsonify({ "and":{
+    return jsonify({
         "func7": "0000000",
         "func3": "111",
         "opcode": "0110011",    
-        "rs2": "-----" if rs2 == None else convertirPunteros(rs2),
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs2": "-----" if rs2 == None else convertirRegistro(rs2),
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/addi', methods = ['GET'])
 def addi():
@@ -171,13 +172,13 @@ def addi():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "addi":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+        "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "000",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/andi', methods = ['GET'])
 def andi():
@@ -185,13 +186,13 @@ def andi():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "andi":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+        "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "111",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/ori', methods = ['GET'])
 def ori():
@@ -199,13 +200,13 @@ def ori():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "ori":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+        "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "110",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/xori', methods = ['GET'])
 def xori():
@@ -213,13 +214,13 @@ def xori():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "xori":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+        "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "100",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/slti', methods = ['GET'])
 def slti():
@@ -227,13 +228,13 @@ def slti():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "slti":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+        "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "010",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/sltiu', methods = ['GET'])
 def sltui():
@@ -241,13 +242,13 @@ def sltui():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "sltiu":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+        "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "011",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/slli', methods = ['GET'])
 def slli():
@@ -255,13 +256,13 @@ def slli():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "slli":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+        "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "001",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/srli', methods = ['GET'])
 def srli():
@@ -269,13 +270,13 @@ def srli():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "srli":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+         "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "101",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/srai', methods = ['GET'])
 def srai():
@@ -283,13 +284,13 @@ def srai():
     rd = request.args.get('rd')
     inm = request.args.get('inm')
 
-    return jsonify({ "srai":{
-        "inmediato": "-----" if inm == None else convertirBinarios(inm),
+    return jsonify({
+        "inmediato": "-----" if inm == None else convertirRegistro(inm),
         "func3": "100",
         "opcode": "0010011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/lb', methods = ['GET'])
 def lb():
@@ -298,13 +299,13 @@ def lb():
 
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    return jsonify({ "lb":{
+    return jsonify({
         "inmediato": numconv,
         "func3": "000",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/lh', methods = ['GET'])
 def lh():
@@ -313,13 +314,13 @@ def lh():
 
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    return jsonify({ "lh":{
+    return jsonify({
         "inmediato": numconv,
         "func3": "001",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/lw', methods = ['GET'])
 def lw():
@@ -328,13 +329,13 @@ def lw():
 
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    return jsonify({ "lw":{
+    return jsonify({
         "inmediato": numconv,
         "func3": "010",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/lbu', methods = ['GET'])
 def lbu():
@@ -343,13 +344,13 @@ def lbu():
 
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    return jsonify({ "lbu":{
+    return jsonify({
         "inmediato": numconv,
         "func3": "100",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/lhu', methods = ['GET'])
 def lhu():
@@ -358,13 +359,13 @@ def lhu():
 
     numero = request.args.get('inm')
     numconv = convertirBinarios(numero)
-    return jsonify({ "lhu":{
+    return jsonify({
         "inmediato": numconv,
         "func3": "101",
         "opcode": "0000011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/sb', methods = ['GET'])
 def sb():
@@ -374,14 +375,14 @@ def sb():
     numconv = convertirBinarios(numero)
     num5 = numconv[7:12]
     num7 = numconv[0:7]
-    return jsonify({ "sb":{
+    return jsonify({
         "inmediato5": num5,
         "inmediato7": num7,
         "func3": "000",
         "opcode": "0100011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/sh', methods = ['GET'])
 def sh():
@@ -391,14 +392,14 @@ def sh():
     numconv = convertirBinarios(numero)
     num5 = numconv[7:12]
     num7 = numconv[0:7]
-    return jsonify({ "sh":{
+    return jsonify({
         "inmediato5": num5,
         "inmediato7": num7,
         "func3": "001",
         "opcode": "0100011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd),
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd),
+    }),200
 
 @app.route('/sw', methods = ['GET'])
 def sw():
@@ -408,44 +409,44 @@ def sw():
     numconv = convertirBinarios(numero)
     num5 = numconv[7:12]
     num7 = numconv[0:7]
-    return jsonify({ "sw":{
+    return jsonify({
         "inmediato5": num5,
         "inmediato7": num7,
         "func3": "010",
         "opcode": "0100011",
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd)
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd)
+    }),200
 
 @app.route('/reti', methods = ['GET'])
 def reti():
     num = request.args.get('numhexa')
     numConv = HexadecimalBinario(num)
-    return jsonify({ "reti":{
+    return jsonify({
         "ceros": "00000000000000000000000000",#26
         "hexa": numConv
-    }}),200
+    }),200
 
 @app.route('/shot', methods = ['GET'])
 def shot():
     num = request.args.get('numhexa')
     numConv = HexadecimalBinario(num)
-    return jsonify({ "shot":{
-        "ceros": "00000000000000000000000000",#26
+    return jsonify({
+         "ceros": "00000000000000000000000000",#26
         "hexa": numConv
-    }}),200
+    }),200
 
 @app.route('/pto', methods = ['GET'])
 def pto():
     rs1 = request.args.get('rs1')
     num = request.args.get('numhexa')
     numConv = HexadecimalBinario(num)
-    return jsonify({ "pto":{
+    return jsonify({
         "ceros11": "00000000000",
-        "rs1": convertirPunteros(rs1),
+        "rs1": convertirRegistro(rs1),
         "ceros10": "0000000000",
         "hexa": numConv
-    }}),200
+    }),200
 
 @app.route('/beq', methods = ['GET'])
 def beq():
@@ -460,14 +461,14 @@ def beq():
         num6 = numconv[2:8]
         num11 = numconv[1]
         num12 = numconv[0]
-    return jsonify({ "beq":{
+    return jsonify({
         "opcode": "1100011",
         "func3": "000",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd),
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd),
+    }),200
 
 @app.route('/bne', methods = ['GET'])
 def bne():
@@ -482,14 +483,14 @@ def bne():
         num6 = numconv[2:8]
         num11 = numconv[1]
         num12 = numconv[0]
-    return jsonify({ "bne":{
+    return jsonify({
         "opcode": "1100011",
         "func3": "001",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd),
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd),
+    }),200
 
 @app.route('/blt', methods = ['GET'])
 def blt():
@@ -504,14 +505,14 @@ def blt():
         num6 = numconv[2:8]
         num11 = numconv[1]
         num12 = numconv[0]
-    return jsonify({ "blt":{
+    return jsonify({
         "opcode": "1100011",
         "func3": "100",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd),
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd),
+    }),200
 
 @app.route('/bge', methods = ['GET'])
 def bge():
@@ -526,14 +527,14 @@ def bge():
         num6 = numconv[2:8]
         num11 = numconv[1]
         num12 = numconv[0]
-    return jsonify({ "bge":{
+    return jsonify({
         "opcode": "1100011",
         "func3": "101",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd),
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd),
+    }),200
 
 @app.route('/bltu', methods = ['GET'])
 def bltu():
@@ -548,14 +549,14 @@ def bltu():
         num6 = numconv[2:8]
         num11 = numconv[1]
         num12 = numconv[0]
-    return jsonify({ "bltu":{
-        "opcode": "1100011",
+    return jsonify({
+         "opcode": "1100011",
         "func3": "110",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd),
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd),
+    }),200
 
 @app.route('/bgeu', methods = ['GET'])
 def bgeu():
@@ -570,11 +571,11 @@ def bgeu():
         num6 = numconv[2:8]
         num11 = numconv[1]
         num12 = numconv[0]
-    return jsonify({ "bgeu":{
-        "opcode": "1100011",
+    return jsonify({
+         "opcode": "1100011",
         "func3": "111",
         "inmediato5": num4+num11,
         "inmediato7": num12+num6,
-        "rs1": "-----" if rs1 == None else convertirPunteros(rs1),
-        "rd": "-----" if rd == None else convertirPunteros(rd),
-    }}),200
+        "rs1": "-----" if rs1 == None else convertirRegistro(rs1),
+        "rd": "-----" if rd == None else convertirRegistro(rd),
+    }),200
